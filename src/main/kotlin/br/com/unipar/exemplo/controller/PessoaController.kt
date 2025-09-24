@@ -1,8 +1,9 @@
-package controller
+package br.com.unipar.exemplo.controller
 
-import database.PessoaRepository
-import model.Pessoa
+import br.com.unipar.exemplo.database.PessoaRepository
+import br.com.unipar.exemplo.model.Pessoa
 import org.springframework.http.ResponseEntity
+import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -13,12 +14,17 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/pessoa")
 class PessoaController(
-    val pessoaRepository : PessoaRepository
+    private val pessoaRepository : PessoaRepository
 ){
     @PostMapping
     fun cadastrarPessoa(@RequestBody pessoa: Pessoa)
     : ResponseEntity<Pessoa>{
         return ResponseEntity.ok(
             pessoaRepository.save<Pessoa>(pessoa))
+    }
+
+    @GetMapping
+    fun listarPessoas() : List<Pessoa>{
+        return pessoaRepository.findAll()
     }
 }
