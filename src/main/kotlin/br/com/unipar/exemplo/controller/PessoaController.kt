@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/pessoa")
 class PessoaController(
     private val pessoaRepository : PessoaRepository
+
 ){
     @PostMapping
     fun cadastrarPessoa(@RequestBody pessoa: Pessoa)
