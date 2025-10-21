@@ -27,6 +27,7 @@ class PessoaController(
             pessoaRepository.save<Pessoa>(pessoa))
     }
 
+
     @GetMapping
     fun buscarPessoas() : ResponseEntity<List<Pessoa>>{
         return ResponseEntity.ok(pessoaRepository.findAll())
